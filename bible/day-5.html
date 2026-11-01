@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>성경 퀴즈 Day 5 · 창세기 5장</title>
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--ink:#1d2433;--sub:#667085;--acc:#5b4bdb;--ok:#2f9e44;--bad:#e03131;--line:#e4e7ec}
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;-webkit-text-size-adjust:100%}
+header{background:linear-gradient(135deg,#5b4bdb,#c2255c);color:#fff;padding:20px 16px 16px}
+header h1{margin:0;font-size:22px}header p{margin:4px 0 0;opacity:.92;font-size:14px}
+main{max-width:760px;margin:0 auto;padding:12px 12px 40px}
+button,input{font:inherit}button{border:1px solid var(--line);background:#fff;border-radius:10px;padding:10px 12px;cursor:pointer;color:var(--ink)}
+button.primary{background:var(--acc);border-color:var(--acc);color:#fff;font-weight:600}button:active{transform:scale(.98)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin:10px 0;box-shadow:0 1px 2px rgba(16,24,40,.04)}
+.card h2{margin:0 0 8px;font-size:17px}
+.sum li{margin:4px 0;font-size:15px}
+.verse{background:#f3f0ff;border-left:4px solid var(--acc);border-radius:10px;padding:12px;font-size:18px;font-weight:600}
+.verse small{display:block;font-size:13px;color:var(--sub);font-weight:400;margin-top:4px}
+.prog{height:8px;background:#eaecf0;border-radius:99px;overflow:hidden;margin:6px 0 12px}.prog div{height:100%;background:var(--acc);width:0;transition:width .3s}
+.qtype{font-size:13px;color:var(--sub);display:flex;justify-content:space-between}
+.qtext{font-size:20px;font-weight:700;margin:10px 0 14px;word-break:keep-all}
+.opts{display:grid;gap:8px}.opts button{text-align:left;font-size:16px;padding:13px}
+.opts button.ok,.chips button.ok{background:#ebfbee;border-color:var(--ok);color:#1b5e20;font-weight:600}
+.opts button.bad,.chips button.bad{background:#fff5f5;border-color:var(--bad);color:#a61e1e}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}.chips button{border-radius:999px;padding:8px 14px}
+.row{display:flex;gap:8px}.row input{flex:1;min-width:0;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:17px}
+.fb{margin-top:12px;border-radius:12px;padding:12px;font-size:15px;display:none}
+.fb.ok{display:block;background:#ebfbee;border:1px solid #b2f2bb}.fb.bad{display:block;background:#fff5f5;border:1px solid #ffc9c9}
+.fb .ref{color:var(--sub);font-size:13px;margin-top:4px}
+.next{margin-top:12px;width:100%;display:none}
+.result{text-align:center}.big{font-size:44px;font-weight:800;color:var(--acc);margin:6px 0}
+.review{text-align:left;font-size:14px}.review div{border-top:1px dashed var(--line);padding:8px 0}
+.foot{font-size:12px;color:var(--sub);text-align:center;margin-top:16px}
+</style></head><body>
+<header><h1>📖 성경 퀴즈 Day 5</h1><p>창세기 5장 · 아담 자손의 계보 — 하나님과 동행한 에녹</p></header>
+<main>
+<section class="card"><h2>📝 오늘의 장 요약</h2><ul class="sum"><li>창세기 5장은 &quot;아담 자손의 계보&quot;예요. 하나님이 사람을 하나님의 형상대로, 남자와 여자로 창조하시고 복을 주셨다는 말씀으로 시작해요 (창 5:1–2).</li><li>아담은 130세에 자기 형상과 같은 아들 셋을 낳았고 930세에 죽었어요. 이어서 셋, 에노스, 게난, 마할랄렐, 야렛으로 이어지며 &quot;낳았고… 자녀를 낳았으며… 죽었더라&quot;가 반복돼요 (창 5:3–20).</li><li>그런데 에녹만은 달라요. 므두셀라를 낳은 후 300년을 하나님과 동행했고, 365세에 하나님이 그를 데려가셔서 죽음을 보지 않았어요 (창 5:21–24).</li><li>에녹의 아들 므두셀라는 969세로 성경에서 가장 오래 산 사람이에요. 그 아들 라멕은 아들을 낳고 &quot;이 아들이 우리를 안위하리라&quot; 하며 노아라 이름했어요 (창 5:25–31).</li><li>노아는 500세 된 후에 셈과 함과 야벳을 낳았어요. 아담부터 노아까지 열 세대가 이어져 홍수 이야기로 넘어가요 (창 5:32).</li></ul></section>
+<section class="card"><h2>✨ 핵심 구절</h2><div class="verse">“에녹이 하나님과 동행하더니 하나님이 그를 데려 가시므로 세상에 있지 아니하였더라”<small>— 창세기 5:24 (개역한글)</small></div></section>
+<section class="card" id="quiz">
+  <div class="qtype"><span id="qt"></span><span id="qn"></span></div>
+  <div class="prog"><div id="bar"></div></div>
+  <div class="qtext" id="qq"></div>
+  <div id="area"></div>
+  <div class="fb" id="fb"></div>
+  <button class="primary next" id="nx">다음 문제 →</button>
+</section>
+<section class="card result" id="res" style="display:none"></section>
+<p class="foot">본문 인용은 개역한글 기준, 요약·설명은 본문을 풀어 쓴 것이에요. 다음: 창세기 6장</p>
+</main>
+<script>
+const QS=[{"type": "blank", "q": "아담 자손의 계보가 이러하니라 하나님이 사람을 창조하실 때에 하나님의 ____대로 지으시되", "answer": "형상", "accept": ["형상"], "choices": ["형상", "뜻", "말씀", "계획"], "explain": "계보가 창세기 1장의 창조를 다시 떠올리며 시작해요. 사람은 하나님의 형상대로 지음받았어요.", "ref": "창 5:1"}, {"type": "mc", "q": "아담이 셋을 낳았을 때의 나이는?", "options": ["105세", "130세", "500세", "930세"], "answer": 1, "explain": "\"아담이 일백 삼십세에 자기 모양 곧 자기 형상과 같은 아들을 낳아 이름을 셋이라 하였고\"", "ref": "창 5:3"}, {"type": "mc", "q": "아담은 몇 세를 살고 죽었나요?", "options": ["800세", "912세", "930세", "969세"], "answer": 2, "explain": "\"그가 구백 삼십세를 향수하고 죽었더라\" — 셋은 912세, 므두셀라는 969세를 살았어요.", "ref": "창 5:5"}, {"type": "mc", "q": "다음 중 계보 순서가 바른 것은?", "options": ["셋 → 에노스 → 게난 → 마할랄렐", "셋 → 게난 → 에노스 → 야렛", "에노스 → 셋 → 마할랄렐 → 게난", "셋 → 에녹 → 게난 → 라멕"], "answer": 0, "explain": "아담 → 셋 → 에노스 → 게난 → 마할랄렐 → 야렛 → 에녹 → 므두셀라 → 라멕 → 노아, 열 세대예요.", "ref": "창 5:6–15"}, {"type": "blank", "q": "에녹이 하나님과 ____하더니 하나님이 그를 데려 가시므로 세상에 있지 아니하였더라", "answer": "동행", "accept": ["동행"], "choices": ["동행", "동역", "교제", "화목"], "explain": "오늘의 핵심 구절이에요. 다른 사람들은 \"죽었더라\"로 끝나는데, 에녹은 죽음을 보지 않고 하나님이 데려가셨어요.", "ref": "창 5:24"}, {"type": "mc", "q": "에녹은 므두셀라를 낳은 후 몇 년 동안 하나님과 동행했나요?", "options": ["65년", "100년", "300년", "365년"], "answer": 2, "explain": "\"므두셀라를 낳은 후 삼백년을 하나님과 동행하며 자녀를 낳았으며\" — 평범한 가정생활 속에서 하나님과 동행했어요.", "ref": "창 5:22"}, {"type": "mc", "q": "에녹이 세상에 있던 햇수는?", "options": ["365세", "777세", "895세", "962세"], "answer": 0, "explain": "\"그가 삼백 육십 오세를 향수하였더라\" — 1년의 날 수와 같은 365세예요.", "ref": "창 5:23"}, {"type": "blank", "q": "성경에서 가장 오래 산 사람은 969세를 산 ____예요.", "answer": "므두셀라", "accept": ["므두셀라"], "choices": ["므두셀라", "아담", "야렛", "노아"], "explain": "\"그는 구백 육십 구세를 향수하고 죽었더라\" — 아버지 야렛(962세)보다도 길게 살았어요.", "ref": "창 5:27"}, {"type": "mc", "q": "라멕이 아들 이름을 노아라 하며 한 말은?", "options": ["이 아들이 땅을 다스리리라", "이 아들이 우리를 안위하리라", "하나님이 다른 씨를 주셨다", "내가 여호와로 말미암아 득남하였다"], "answer": 1, "explain": "\"여호와께서 땅을 저주하시므로 수고로이 일하는 우리를 이 아들이 안위하리라\" — 창세기 3장의 저주를 기억한 소망의 말이에요.", "ref": "창 5:29"}, {"type": "mc", "q": "노아의 아버지 라멕은 몇 세를 살았나요?", "options": ["595세", "707세", "777세", "969세"], "answer": 2, "explain": "\"그는 칠백 칠십 칠세를 향수하고 죽었더라\" — 4장의 가인 계보 라멕(칠십 칠 배 복수)과는 다른 사람이에요.", "ref": "창 5:31"}, {"type": "blank", "q": "노아가 오백세 된 후에 셈과 ____과 야벳을 낳았더라", "answer": "함", "accept": ["함"], "choices": ["함", "셋", "에벨", "벨렉"], "explain": "노아의 세 아들로 계보가 마무리되고, 이어서 홍수 이야기가 시작돼요.", "ref": "창 5:32"}];
+let i=0,score=0,log=[];
+const $=id=>document.getElementById(id);
+const norm=s=>s.replace(/[\s.,!?·'"“”‘’()]/g,'').toLowerCase();
+function show(){
+  const q=QS[i];
+  $('qt').textContent=q.type==='mc'?'4지선다':'빈칸 채우기';
+  $('qn').textContent=(i+1)+' / '+QS.length+' · 점수 '+score;
+  $('bar').style.width=(i/QS.length*100)+'%';
+  $('qq').textContent=q.q; $('fb').className='fb'; $('fb').innerHTML=''; $('nx').style.display='none';
+  const a=$('area'); a.innerHTML='';
+  if(q.type==='mc'){
+    const box=document.createElement('div');box.className='opts';
+    q.options.forEach((o,k)=>{const b=document.createElement('button');b.textContent=['①','②','③','④'][k]+' '+o;b.onclick=()=>answerMC(k,box);box.appendChild(b);});
+    a.appendChild(box);
+  }else{
+    const row=document.createElement('div');row.className='row';
+    row.innerHTML='<input id="inp" placeholder="직접 입력하거나 아래에서 고르세요" autocomplete="off"><button class="primary" id="ck">확인</button>';
+    a.appendChild(row);
+    const ch=document.createElement('div');ch.className='chips';
+    shuffle(q.choices.slice()).forEach(c=>{const b=document.createElement('button');b.textContent=c;b.onclick=()=>{$('inp').value=c;answerBlank(c,ch);};ch.appendChild(b);});
+    a.appendChild(ch);
+    $('ck').onclick=()=>{const v=$('inp').value.trim(); if(v) answerBlank(v,ch);};
+    $('inp').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();$('ck').click();}};
+  }
+}
+function shuffle(a){for(let k=a.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[a[k],a[j]]=[a[j],a[k]];}return a;}
+function feedback(ok,correctText){
+  const q=QS[i]; if(ok)score++; log.push({q:q.q,ok,ans:correctText,ref:q.ref});
+  $('fb').className='fb '+(ok?'ok':'bad');
+  $('fb').innerHTML=(ok?'⭕ 정답이에요!':'❌ 아쉬워요. 정답: <b>'+esc(correctText)+'</b>')+'<div style="margin-top:6px">'+esc(q.explain)+'</div><div class="ref">📍 '+esc(q.ref)+'</div>';
+  $('qn').textContent=(i+1)+' / '+QS.length+' · 점수 '+score;
+  $('nx').textContent=i===QS.length-1?'결과 보기 🎉':'다음 문제 →'; $('nx').style.display='block';
+}
+function answerMC(k,box){
+  const q=QS[i]; [...box.children].forEach((b,n)=>{b.disabled=true;if(n===q.answer)b.classList.add('ok');else if(n===k)b.classList.add('bad');});
+  feedback(k===q.answer,q.options[q.answer]);
+}
+function answerBlank(v,ch){
+  const q=QS[i]; const ok=q.accept.some(x=>norm(x)===norm(v));
+  $('inp').disabled=true;$('ck').disabled=true;
+  [...ch.children].forEach(b=>{b.disabled=true;if(b.textContent===q.answer)b.classList.add('ok');else if(b.textContent===v&&!ok)b.classList.add('bad');});
+  feedback(ok,q.answer);
+}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+$('nx').onclick=()=>{i++; if(i<QS.length){show();window.scrollTo({top:$('quiz').offsetTop-8,behavior:'smooth'});} else finish();};
+function finish(){
+  $('quiz').style.display='none';const r=$('res');r.style.display='block';
+  const pct=Math.round(score/QS.length*100);
+  const msg=pct===100?'완벽해요! 🏆':pct>=80?'훌륭해요! 👏':pct>=50?'좋아요, 조금만 더! 💪':'요약을 다시 읽고 도전해 보세요 📖';
+  r.innerHTML='<h2>결과</h2><div class="big">'+score+' / '+QS.length+'</div><p>'+msg+'</p><div class="review">'+log.map((l,n)=>'<div>'+(l.ok?'⭕':'❌')+' '+(n+1)+'. '+esc(l.q)+'<br><small>정답: '+esc(l.ans)+' · '+esc(l.ref)+'</small></div>').join('')+'</div><button class="primary" style="width:100%;margin-top:12px" id="rs">🔄 다시 풀기</button>';
+  $('rs').onclick=()=>{i=0;score=0;log=[];r.style.display='none';$('quiz').style.display='block';show();window.scrollTo({top:$('quiz').offsetTop-8,behavior:'smooth'});};
+}
+show();
+</script></body></html>
