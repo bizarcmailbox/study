@@ -69,6 +69,12 @@ a:active{{background:#eef}}
 {''.join(parts)}
 </main></body></html>
 """
-with open(os.path.join(site, "index.html"), "w", encoding="utf-8") as f:
+out = os.path.join(site, "index.html")
+stamp = re.compile(r"최근 업데이트: [0-9: -]+")
+if os.path.exists(out):
+    old = open(out, encoding="utf-8").read()
+    if stamp.sub("", old) == stamp.sub("", page):
+        print("index.html unchanged"); sys.exit(0)
+with open(out, "w", encoding="utf-8") as f:
     f.write(page)
 print("index.html written")
