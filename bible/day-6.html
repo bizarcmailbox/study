@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>성경 퀴즈 Day 6 · 창세기 6장</title>
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--ink:#1d2433;--sub:#667085;--acc:#5b4bdb;--ok:#2f9e44;--bad:#e03131;--line:#e4e7ec}
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;-webkit-text-size-adjust:100%}
+header{background:linear-gradient(135deg,#5b4bdb,#c2255c);color:#fff;padding:20px 16px 16px}
+header h1{margin:0;font-size:22px}header p{margin:4px 0 0;opacity:.92;font-size:14px}
+main{max-width:760px;margin:0 auto;padding:12px 12px 40px}
+button,input{font:inherit}button{border:1px solid var(--line);background:#fff;border-radius:10px;padding:10px 12px;cursor:pointer;color:var(--ink)}
+button.primary{background:var(--acc);border-color:var(--acc);color:#fff;font-weight:600}button:active{transform:scale(.98)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin:10px 0;box-shadow:0 1px 2px rgba(16,24,40,.04)}
+.card h2{margin:0 0 8px;font-size:17px}
+.sum li{margin:4px 0;font-size:15px}
+.verse{background:#f3f0ff;border-left:4px solid var(--acc);border-radius:10px;padding:12px;font-size:18px;font-weight:600}
+.verse small{display:block;font-size:13px;color:var(--sub);font-weight:400;margin-top:4px}
+.prog{height:8px;background:#eaecf0;border-radius:99px;overflow:hidden;margin:6px 0 12px}.prog div{height:100%;background:var(--acc);width:0;transition:width .3s}
+.qtype{font-size:13px;color:var(--sub);display:flex;justify-content:space-between}
+.qtext{font-size:20px;font-weight:700;margin:10px 0 14px;word-break:keep-all}
+.opts{display:grid;gap:8px}.opts button{text-align:left;font-size:16px;padding:13px}
+.opts button.ok,.chips button.ok{background:#ebfbee;border-color:var(--ok);color:#1b5e20;font-weight:600}
+.opts button.bad,.chips button.bad{background:#fff5f5;border-color:var(--bad);color:#a61e1e}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}.chips button{border-radius:999px;padding:8px 14px}
+.row{display:flex;gap:8px}.row input{flex:1;min-width:0;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:17px}
+.fb{margin-top:12px;border-radius:12px;padding:12px;font-size:15px;display:none}
+.fb.ok{display:block;background:#ebfbee;border:1px solid #b2f2bb}.fb.bad{display:block;background:#fff5f5;border:1px solid #ffc9c9}
+.fb .ref{color:var(--sub);font-size:13px;margin-top:4px}
+.next{margin-top:12px;width:100%;display:none}
+.result{text-align:center}.big{font-size:44px;font-weight:800;color:var(--acc);margin:6px 0}
+.review{text-align:left;font-size:14px}.review div{border-top:1px dashed var(--line);padding:8px 0}
+.foot{font-size:12px;color:var(--sub);text-align:center;margin-top:16px}
+</style></head><body>
+<header><h1>📖 성경 퀴즈 Day 6</h1><p>창세기 6장 · 죄로 가득한 세상과 노아의 방주</p></header>
+<main>
+<section class="card"><h2>📝 오늘의 장 요약</h2><ul class="sum"><li>사람이 땅에 번성하자 하나님의 아들들이 사람의 딸들을 아내로 삼았어요. 여호와께서는 사람의 날이 120년이 되리라 하셨고, 당시 땅에는 네피림이 있었어요 (창 6:1–4).</li><li>여호와께서는 사람의 죄악이 세상에 가득하고 마음의 생각이 항상 악할 뿐임을 보시고, 사람 지으신 것을 한탄하시며 지면에서 쓸어 버리겠다고 하셨어요 (창 6:5–7).</li><li>그러나 노아는 여호와께 은혜를 입었어요. 노아는 의인이요 당세에 완전한 자로 하나님과 동행했고, 셈과 함과 야벳 세 아들을 두었어요 (창 6:8–10).</li><li>하나님은 강포가 가득한 땅을 홍수로 멸하시겠다고 하시며, 노아에게 잣나무로 방주를 짓고 역청을 칠하라고 하셨어요. 길이 300, 너비 50, 높이 30규빗의 3층 배였어요 (창 6:11–17).</li><li>하나님은 노아와 언약을 세우시고 가족과 생물 암수 한 쌍씩, 먹을 양식을 방주에 들이라 하셨어요. 노아는 명하신 대로 다 준행했어요 (창 6:18–22).</li></ul></section>
+<section class="card"><h2>✨ 핵심 구절</h2><div class="verse">“그러나 노아는 여호와께 은혜를 입었더라”<small>— 창세기 6:8 (개역한글)</small></div></section>
+<section class="card" id="quiz">
+  <div class="qtype"><span id="qt"></span><span id="qn"></span></div>
+  <div class="prog"><div id="bar"></div></div>
+  <div class="qtext" id="qq"></div>
+  <div id="area"></div>
+  <div class="fb" id="fb"></div>
+  <button class="primary next" id="nx">다음 문제 →</button>
+</section>
+<section class="card result" id="res" style="display:none"></section>
+<p class="foot">본문 인용은 개역한글 기준, 요약·설명은 본문을 풀어 쓴 것이에요. 다음: 창세기 7장</p>
+</main>
+<script>
+const QS=[{"type": "mc", "q": "여호와께서 사람의 날이 몇 년이 되리라고 하셨나요?", "options": ["70년", "100년", "120년", "365년"], "answer": 2, "explain": "\"그러나 그들의 날은 일백 이십년이 되리라 하시니라\"", "ref": "창 6:3"}, {"type": "blank", "q": "당시에 땅에 ____이 있었고 … 그들이 용사라 고대에 유명한 사람이었더라", "answer": "네피림", "accept": ["네피림"], "choices": ["네피림", "아낙", "르바임", "그룹"], "explain": "홍수 이전 시대에 땅에 있던 사람들로, '용사', '고대에 유명한 사람'으로 소개돼요.", "ref": "창 6:4"}, {"type": "mc", "q": "여호와께서 보신 사람의 마음은 어떠했나요?", "options": ["가끔 악했다", "생각의 모든 계획이 항상 악할 뿐이었다", "선과 악이 반반이었다", "하나님을 찾고 있었다"], "answer": 1, "explain": "\"사람의 죄악이 세상에 관영함과 그 마음의 생각의 모든 계획이 항상 악할 뿐임을 보시고\"", "ref": "창 6:5"}, {"type": "blank", "q": "그러나 노아는 여호와께 ____를 입었더라", "answer": "은혜", "accept": ["은혜"], "choices": ["은혜", "복", "사랑", "능력"], "explain": "오늘의 핵심 구절이에요. 심판의 선언 바로 뒤에 \"그러나\"로 소망이 시작돼요.", "ref": "창 6:8"}, {"type": "mc", "q": "성경이 노아를 소개한 말이 아닌 것은?", "options": ["의인", "당세에 완전한 자", "하나님과 동행한 자", "땅의 왕"], "answer": 3, "explain": "\"노아는 의인이요 당세에 완전한 자라 그가 하나님과 동행하였으며\" — 5장의 에녹처럼 '동행'이라는 말이 나와요.", "ref": "창 6:9"}, {"type": "mc", "q": "온 땅에 충만했던 것은 무엇인가요?", "options": ["기근", "강포", "전염병", "우상"], "answer": 1, "explain": "\"때에 온 땅이 하나님 앞에 패괴하여 강포가 땅에 충만한지라\"", "ref": "창 6:11"}, {"type": "blank", "q": "너는 ____로 너를 위하여 방주를 짓되 그 안에 간들을 막고 역청으로 그 안팎에 칠하라", "answer": "잣나무", "accept": ["잣나무"], "choices": ["잣나무", "백향목", "감람나무", "조각목"], "explain": "방주는 잣나무(개역한글 표현)로 짓고, 물이 새지 않도록 안팎에 역청을 칠했어요.", "ref": "창 6:14"}, {"type": "mc", "q": "방주의 크기(장·광·고)로 맞는 것은?", "options": ["300·50·30 규빗", "100·50·10 규빗", "500·100·50 규빗", "120·40·12 규빗"], "answer": 0, "explain": "\"장이 삼백 규빗, 광이 오십 규빗, 고가 삼십 규빗이며\" — 1규빗은 대략 45cm 정도로 봐요.", "ref": "창 6:15"}, {"type": "mc", "q": "방주는 몇 층으로 지으라고 하셨나요?", "options": ["1층", "2층", "3층", "7층"], "answer": 2, "explain": "\"그 문은 옆으로 내고 상 중 하 삼층으로 할지니라\"", "ref": "창 6:16"}, {"type": "blank", "q": "그러나 너와는 내가 내 ____을 세우리니 너는 네 아들들과 네 아내와 네 자부들과 함께 그 방주로 들어가고", "answer": "언약", "accept": ["언약"], "choices": ["언약", "제단", "성막", "율법"], "explain": "성경에서 '언약'이라는 말이 처음 나오는 곳이에요.", "ref": "창 6:18"}, {"type": "mc", "q": "6장에서 생물을 방주에 들이라고 하신 방법은?", "options": ["각기 암수 한 쌍씩", "모두 일곱 쌍씩", "새만 한 쌍씩", "육축만 열 마리씩"], "answer": 0, "explain": "\"혈육 있는 모든 생물을 너는 각기 암수 한쌍씩 방주로 이끌어 들여\" — 7장에서는 정결한 짐승에 대해 더 자세히 말씀하세요.", "ref": "창 6:19"}, {"type": "blank", "q": "노아가 그와 같이 하되 하나님이 자기에게 명하신대로 다 ____하였더라", "answer": "준행", "accept": ["준행"], "choices": ["준행", "기억", "기도", "선포"], "explain": "노아는 아직 비가 오지 않았을 때에도 말씀하신 대로 모두 순종했어요.", "ref": "창 6:22"}];
+let i=0,score=0,log=[];
+const $=id=>document.getElementById(id);
+const norm=s=>s.replace(/[\s.,!?·'"“”‘’()]/g,'').toLowerCase();
+function show(){
+  const q=QS[i];
+  $('qt').textContent=q.type==='mc'?'4지선다':'빈칸 채우기';
+  $('qn').textContent=(i+1)+' / '+QS.length+' · 점수 '+score;
+  $('bar').style.width=(i/QS.length*100)+'%';
+  $('qq').textContent=q.q; $('fb').className='fb'; $('fb').innerHTML=''; $('nx').style.display='none';
+  const a=$('area'); a.innerHTML='';
+  if(q.type==='mc'){
+    const box=document.createElement('div');box.className='opts';
+    q.options.forEach((o,k)=>{const b=document.createElement('button');b.textContent=['①','②','③','④'][k]+' '+o;b.onclick=()=>answerMC(k,box);box.appendChild(b);});
+    a.appendChild(box);
+  }else{
+    const row=document.createElement('div');row.className='row';
+    row.innerHTML='<input id="inp" placeholder="직접 입력하거나 아래에서 고르세요" autocomplete="off"><button class="primary" id="ck">확인</button>';
+    a.appendChild(row);
+    const ch=document.createElement('div');ch.className='chips';
+    shuffle(q.choices.slice()).forEach(c=>{const b=document.createElement('button');b.textContent=c;b.onclick=()=>{$('inp').value=c;answerBlank(c,ch);};ch.appendChild(b);});
+    a.appendChild(ch);
+    $('ck').onclick=()=>{const v=$('inp').value.trim(); if(v) answerBlank(v,ch);};
+    $('inp').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();$('ck').click();}};
+  }
+}
+function shuffle(a){for(let k=a.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[a[k],a[j]]=[a[j],a[k]];}return a;}
+function feedback(ok,correctText){
+  const q=QS[i]; if(ok)score++; log.push({q:q.q,ok,ans:correctText,ref:q.ref});
+  $('fb').className='fb '+(ok?'ok':'bad');
+  $('fb').innerHTML=(ok?'⭕ 정답이에요!':'❌ 아쉬워요. 정답: <b>'+esc(correctText)+'</b>')+'<div style="margin-top:6px">'+esc(q.explain)+'</div><div class="ref">📍 '+esc(q.ref)+'</div>';
+  $('qn').textContent=(i+1)+' / '+QS.length+' · 점수 '+score;
+  $('nx').textContent=i===QS.length-1?'결과 보기 🎉':'다음 문제 →'; $('nx').style.display='block';
+}
+function answerMC(k,box){
+  const q=QS[i]; [...box.children].forEach((b,n)=>{b.disabled=true;if(n===q.answer)b.classList.add('ok');else if(n===k)b.classList.add('bad');});
+  feedback(k===q.answer,q.options[q.answer]);
+}
+function answerBlank(v,ch){
+  const q=QS[i]; const ok=q.accept.some(x=>norm(x)===norm(v));
+  $('inp').disabled=true;$('ck').disabled=true;
+  [...ch.children].forEach(b=>{b.disabled=true;if(b.textContent===q.answer)b.classList.add('ok');else if(b.textContent===v&&!ok)b.classList.add('bad');});
+  feedback(ok,q.answer);
+}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+$('nx').onclick=()=>{i++; if(i<QS.length){show();window.scrollTo({top:$('quiz').offsetTop-8,behavior:'smooth'});} else finish();};
+function finish(){
+  $('quiz').style.display='none';const r=$('res');r.style.display='block';
+  const pct=Math.round(score/QS.length*100);
+  const msg=pct===100?'완벽해요! 🏆':pct>=80?'훌륭해요! 👏':pct>=50?'좋아요, 조금만 더! 💪':'요약을 다시 읽고 도전해 보세요 📖';
+  r.innerHTML='<h2>결과</h2><div class="big">'+score+' / '+QS.length+'</div><p>'+msg+'</p><div class="review">'+log.map((l,n)=>'<div>'+(l.ok?'⭕':'❌')+' '+(n+1)+'. '+esc(l.q)+'<br><small>정답: '+esc(l.ans)+' · '+esc(l.ref)+'</small></div>').join('')+'</div><button class="primary" style="width:100%;margin-top:12px" id="rs">🔄 다시 풀기</button>';
+  $('rs').onclick=()=>{i=0;score=0;log=[];r.style.display='none';$('quiz').style.display='block';show();window.scrollTo({top:$('quiz').offsetTop-8,behavior:'smooth'});};
+}
+show();
+</script></body></html>
