@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>성경 퀴즈 Day 7 · 창세기 7장</title>
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--ink:#1d2433;--sub:#667085;--acc:#5b4bdb;--ok:#2f9e44;--bad:#e03131;--line:#e4e7ec}
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;-webkit-text-size-adjust:100%}
+header{background:linear-gradient(135deg,#5b4bdb,#c2255c);color:#fff;padding:20px 16px 16px}
+header h1{margin:0;font-size:22px}header p{margin:4px 0 0;opacity:.92;font-size:14px}
+main{max-width:760px;margin:0 auto;padding:12px 12px 40px}
+button,input{font:inherit}button{border:1px solid var(--line);background:#fff;border-radius:10px;padding:10px 12px;cursor:pointer;color:var(--ink)}
+button.primary{background:var(--acc);border-color:var(--acc);color:#fff;font-weight:600}button:active{transform:scale(.98)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin:10px 0;box-shadow:0 1px 2px rgba(16,24,40,.04)}
+.card h2{margin:0 0 8px;font-size:17px}
+.sum li{margin:4px 0;font-size:15px}
+.verse{background:#f3f0ff;border-left:4px solid var(--acc);border-radius:10px;padding:12px;font-size:18px;font-weight:600}
+.verse small{display:block;font-size:13px;color:var(--sub);font-weight:400;margin-top:4px}
+.prog{height:8px;background:#eaecf0;border-radius:99px;overflow:hidden;margin:6px 0 12px}.prog div{height:100%;background:var(--acc);width:0;transition:width .3s}
+.qtype{font-size:13px;color:var(--sub);display:flex;justify-content:space-between}
+.qtext{font-size:20px;font-weight:700;margin:10px 0 14px;word-break:keep-all}
+.opts{display:grid;gap:8px}.opts button{text-align:left;font-size:16px;padding:13px}
+.opts button.ok,.chips button.ok{background:#ebfbee;border-color:var(--ok);color:#1b5e20;font-weight:600}
+.opts button.bad,.chips button.bad{background:#fff5f5;border-color:var(--bad);color:#a61e1e}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}.chips button{border-radius:999px;padding:8px 14px}
+.row{display:flex;gap:8px}.row input{flex:1;min-width:0;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:17px}
+.fb{margin-top:12px;border-radius:12px;padding:12px;font-size:15px;display:none}
+.fb.ok{display:block;background:#ebfbee;border:1px solid #b2f2bb}.fb.bad{display:block;background:#fff5f5;border:1px solid #ffc9c9}
+.fb .ref{color:var(--sub);font-size:13px;margin-top:4px}
+.next{margin-top:12px;width:100%;display:none}
+.result{text-align:center}.big{font-size:44px;font-weight:800;color:var(--acc);margin:6px 0}
+.review{text-align:left;font-size:14px}.review div{border-top:1px dashed var(--line);padding:8px 0}
+.foot{font-size:12px;color:var(--sub);text-align:center;margin-top:16px}
+</style></head><body>
+<header><h1>📖 성경 퀴즈 Day 7</h1><p>창세기 7장 · 홍수 — 방주에 들어간 노아와 심판의 물</p></header>
+<main>
+<section class="card"><h2>📝 오늘의 장 요약</h2><ul class="sum"><li>여호와께서 노아에게 온 집과 함께 방주로 들어가라 하셨어요. 정결한 짐승과 공중의 새는 암수 일곱씩, 부정한 짐승은 암수 둘씩 들이라 하시고, 칠 일 후 사십 주야 비를 내리겠다고 하셨어요 (창 7:1–4).</li><li>노아는 명하신 대로 다 준행했어요. 홍수가 날 때 노아는 육백 세였고, 아들들과 아내와 자부들과 함께 방주에 들어갔어요 (창 7:5–9).</li><li>노아 육백 세 되던 해 이월 십칠일, 큰 깊음의 샘들이 터지고 하늘의 창들이 열려 사십 주야 비가 쏟아졌어요. 모든 생물이 둘씩 들어가자 여호와께서 그를 닫아 넣으셨어요 (창 7:10–16).</li><li>물이 불어 방주가 떠오르고, 천하의 높은 산이 다 덮였어요. 물은 산 위로 십오 규빗이나 올랐어요 (창 7:17–20).</li><li>땅 위의 숨 쉬는 생물은 다 죽고, 오직 노아와 방주에 함께 있던 자만 남았어요. 물은 일백오십 일 동안 땅에 창일했어요 (창 7:21–24).</li></ul></section>
+<section class="card"><h2>✨ 핵심 구절</h2><div class="verse">“여호와께서 노아에게 이르시되 너와 네 온 집은 방주로 들어가라 네가 이 세대에 내 앞에서 의로움을 내가 보았음이니라”<small>— 창세기 7:1 (개역한글)</small></div></section>
+<section class="card" id="quiz">
+  <div class="qtype"><span id="qt"></span><span id="qn"></span></div>
+  <div class="prog"><div id="bar"></div></div>
+  <div class="qtext" id="qq"></div>
+  <div id="area"></div>
+  <div class="fb" id="fb"></div>
+  <button class="primary next" id="nx">다음 문제 →</button>
+</section>
+<section class="card result" id="res" style="display:none"></section>
+<p class="foot">본문 인용은 개역한글 기준, 요약·설명은 본문을 풀어 쓴 것이에요. 다음: 창세기 8장</p>
+</main>
+<script>
+const QS=[{"type": "blank", "q": "너와 네 온 집은 방주로 들어가라 네가 이 세대에 내 앞에서 ____을 내가 보았음이니라", "answer": "의로움", "accept": ["의로움"], "choices": ["의로움", "믿음", "겸손", "지혜"], "explain": "오늘의 핵심 구절이에요. 6:9에서 '의인'이라 불린 노아를 하나님이 직접 인정하세요.", "ref": "창 7:1"}, {"type": "mc", "q": "정결한 짐승은 방주에 몇 마리씩 들이라고 하셨나요?", "options": ["암수 한 쌍씩", "암수 셋씩", "암수 일곱씩", "열 마리씩"], "answer": 2, "explain": "\"모든 정결한 짐승은 암 수 일곱씩, 부정한 것은 암 수 둘씩\" — 6장의 '한 쌍씩'을 더 자세히 말씀하신 거예요.", "ref": "창 7:2"}, {"type": "mc", "q": "공중의 새는 몇씩 취하라고 하셨나요?", "options": ["암수 둘씩", "암수 일곱씩", "한 마리씩", "들이지 말라고 하셨다"], "answer": 1, "explain": "\"공중의 새도 암 수 일곱씩을 취하여 그 씨를 온 지면에 유전케 하라\"", "ref": "창 7:3"}, {"type": "mc", "q": "하나님은 며칠 후에 비를 내리겠다고 하셨나요?", "options": ["사흘 후", "칠 일 후", "사십 일 후", "일 년 후"], "answer": 1, "explain": "\"지금부터 칠일이면 내가 사십 주야를 땅에 비를 내려\" — 실제로 \"칠일 후에 홍수가 땅에 덮이니\"(7:10).", "ref": "창 7:4"}, {"type": "blank", "q": "홍수가 땅에 있을 때에 노아가 ____세라", "answer": "육백", "accept": ["육백", "600"], "choices": ["육백", "오백", "구백", "일백이십"], "explain": "5:32에서 노아가 오백 세 된 후 세 아들을 낳았고, 홍수 때는 육백 세였어요.", "ref": "창 7:6"}, {"type": "mc", "q": "홍수가 시작된 날짜는 언제인가요?", "options": ["정월 초하루", "이월 십칠일", "칠월 십칠일", "십월 초하루"], "answer": 1, "explain": "\"노아 육백세 되던 해 이월 곧 그 달 십칠일이라\"", "ref": "창 7:11"}, {"type": "blank", "q": "그 날에 큰 깊음의 샘들이 터지며 하늘의 ____들이 열려", "answer": "창", "accept": ["창"], "choices": ["창", "문", "구름", "궁창"], "explain": "아래에서는 깊음의 샘이, 위에서는 하늘의 창이 열려 물이 쏟아졌어요.", "ref": "창 7:11"}, {"type": "mc", "q": "모두 방주에 들어간 뒤 문은 누가 닫았나요?", "options": ["노아", "셈", "여호와께서", "바람이 닫았다"], "answer": 2, "explain": "\"하나님이 그에게 명하신대로 들어가매 여호와께서 그를 닫아 넣으시니라\"", "ref": "창 7:16"}, {"type": "mc", "q": "물이 산들 위로 얼마나 올랐나요?", "options": ["오 규빗", "십 규빗", "십오 규빗", "삼십 규빗"], "answer": 2, "explain": "\"물이 불어서 십 오 규빗이 오르매 산들이 덮인지라\"", "ref": "창 7:20"}, {"type": "blank", "q": "이들은 땅에서 쓸어버림을 당하였으되 홀로 ____와 그와 함께 방주에 있던 자만 남았더라", "answer": "노아", "accept": ["노아"], "choices": ["노아", "에녹", "므두셀라", "라멕"], "explain": "심판 속에서도 방주 안의 사람들은 구원받았어요.", "ref": "창 7:23"}, {"type": "mc", "q": "물은 며칠 동안 땅에 창일했나요?", "options": ["사십 일", "일백 일", "일백오십 일", "일 년"], "answer": 2, "explain": "\"물이 일백 오십일을 땅에 창일하였더라\" — 비는 사십 일, 물이 넘친 기간은 일백오십 일이에요.", "ref": "창 7:24"}];
+let i=0,score=0,log=[];
+const $=id=>document.getElementById(id);
+const norm=s=>s.replace(/[\s.,!?·'"“”‘’()]/g,'').toLowerCase();
+function show(){
+  const q=QS[i];
+  $('qt').textContent=q.type==='mc'?'4지선다':'빈칸 채우기';
+  $('qn').textContent=(i+1)+' / '+QS.length+' · 점수 '+score;
+  $('bar').style.width=(i/QS.length*100)+'%';
+  $('qq').textContent=q.q; $('fb').className='fb'; $('fb').innerHTML=''; $('nx').style.display='none';
+  const a=$('area'); a.innerHTML='';
+  if(q.type==='mc'){
+    const box=document.createElement('div');box.className='opts';
+    q.options.forEach((o,k)=>{const b=document.createElement('button');b.textContent=['①','②','③','④'][k]+' '+o;b.onclick=()=>answerMC(k,box);box.appendChild(b);});
+    a.appendChild(box);
+  }else{
+    const row=document.createElement('div');row.className='row';
+    row.innerHTML='<input id="inp" placeholder="직접 입력하거나 아래에서 고르세요" autocomplete="off"><button class="primary" id="ck">확인</button>';
+    a.appendChild(row);
+    const ch=document.createElement('div');ch.className='chips';
+    shuffle(q.choices.slice()).forEach(c=>{const b=document.createElement('button');b.textContent=c;b.onclick=()=>{$('inp').value=c;answerBlank(c,ch);};ch.appendChild(b);});
+    a.appendChild(ch);
+    $('ck').onclick=()=>{const v=$('inp').value.trim(); if(v) answerBlank(v,ch);};
+    $('inp').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();$('ck').click();}};
+  }
+}
+function shuffle(a){for(let k=a.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[a[k],a[j]]=[a[j],a[k]];}return a;}
+function feedback(ok,correctText){
+  const q=QS[i]; if(ok)score++; log.push({q:q.q,ok,ans:correctText,ref:q.ref});
+  $('fb').className='fb '+(ok?'ok':'bad');
+  $('fb').innerHTML=(ok?'⭕ 정답이에요!':'❌ 아쉬워요. 정답: <b>'+esc(correctText)+'</b>')+'<div style="margin-top:6px">'+esc(q.explain)+'</div><div class="ref">📍 '+esc(q.ref)+'</div>';
+  $('qn').textContent=(i+1)+' / '+QS.length+' · 점수 '+score;
+  $('nx').textContent=i===QS.length-1?'결과 보기 🎉':'다음 문제 →'; $('nx').style.display='block';
+}
+function answerMC(k,box){
+  const q=QS[i]; [...box.children].forEach((b,n)=>{b.disabled=true;if(n===q.answer)b.classList.add('ok');else if(n===k)b.classList.add('bad');});
+  feedback(k===q.answer,q.options[q.answer]);
+}
+function answerBlank(v,ch){
+  const q=QS[i]; const ok=q.accept.some(x=>norm(x)===norm(v));
+  $('inp').disabled=true;$('ck').disabled=true;
+  [...ch.children].forEach(b=>{b.disabled=true;if(b.textContent===q.answer)b.classList.add('ok');else if(b.textContent===v&&!ok)b.classList.add('bad');});
+  feedback(ok,q.answer);
+}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+$('nx').onclick=()=>{i++; if(i<QS.length){show();window.scrollTo({top:$('quiz').offsetTop-8,behavior:'smooth'});} else finish();};
+function finish(){
+  $('quiz').style.display='none';const r=$('res');r.style.display='block';
+  const pct=Math.round(score/QS.length*100);
+  const msg=pct===100?'완벽해요! 🏆':pct>=80?'훌륭해요! 👏':pct>=50?'좋아요, 조금만 더! 💪':'요약을 다시 읽고 도전해 보세요 📖';
+  r.innerHTML='<h2>결과</h2><div class="big">'+score+' / '+QS.length+'</div><p>'+msg+'</p><div class="review">'+log.map((l,n)=>'<div>'+(l.ok?'⭕':'❌')+' '+(n+1)+'. '+esc(l.q)+'<br><small>정답: '+esc(l.ans)+' · '+esc(l.ref)+'</small></div>').join('')+'</div><button class="primary" style="width:100%;margin-top:12px" id="rs">🔄 다시 풀기</button>';
+  $('rs').onclick=()=>{i=0;score=0;log=[];r.style.display='none';$('quiz').style.display='block';show();window.scrollTo({top:$('quiz').offsetTop-8,behavior:'smooth'});};
+}
+show();
+</script></body></html>
