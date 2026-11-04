@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>성경 퀴즈 Day 8 · 창세기 8장</title>
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--ink:#1d2433;--sub:#667085;--acc:#5b4bdb;--ok:#2f9e44;--bad:#e03131;--line:#e4e7ec}
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;-webkit-text-size-adjust:100%}
+header{background:linear-gradient(135deg,#5b4bdb,#c2255c);color:#fff;padding:20px 16px 16px}
+header h1{margin:0;font-size:22px}header p{margin:4px 0 0;opacity:.92;font-size:14px}
+main{max-width:760px;margin:0 auto;padding:12px 12px 40px}
+button,input{font:inherit}button{border:1px solid var(--line);background:#fff;border-radius:10px;padding:10px 12px;cursor:pointer;color:var(--ink)}
+button.primary{background:var(--acc);border-color:var(--acc);color:#fff;font-weight:600}button:active{transform:scale(.98)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin:10px 0;box-shadow:0 1px 2px rgba(16,24,40,.04)}
+.card h2{margin:0 0 8px;font-size:17px}
+.sum li{margin:4px 0;font-size:15px}
+.verse{background:#f3f0ff;border-left:4px solid var(--acc);border-radius:10px;padding:12px;font-size:18px;font-weight:600}
+.verse small{display:block;font-size:13px;color:var(--sub);font-weight:400;margin-top:4px}
+.prog{height:8px;background:#eaecf0;border-radius:99px;overflow:hidden;margin:6px 0 12px}.prog div{height:100%;background:var(--acc);width:0;transition:width .3s}
+.qtype{font-size:13px;color:var(--sub);display:flex;justify-content:space-between}
+.qtext{font-size:20px;font-weight:700;margin:10px 0 14px;word-break:keep-all}
+.opts{display:grid;gap:8px}.opts button{text-align:left;font-size:16px;padding:13px}
+.opts button.ok,.chips button.ok{background:#ebfbee;border-color:var(--ok);color:#1b5e20;font-weight:600}
+.opts button.bad,.chips button.bad{background:#fff5f5;border-color:var(--bad);color:#a61e1e}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}.chips button{border-radius:999px;padding:8px 14px}
+.row{display:flex;gap:8px}.row input{flex:1;min-width:0;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:17px}
+.fb{margin-top:12px;border-radius:12px;padding:12px;font-size:15px;display:none}
+.fb.ok{display:block;background:#ebfbee;border:1px solid #b2f2bb}.fb.bad{display:block;background:#fff5f5;border:1px solid #ffc9c9}
+.fb .ref{color:var(--sub);font-size:13px;margin-top:4px}
+.next{margin-top:12px;width:100%;display:none}
+.result{text-align:center}.big{font-size:44px;font-weight:800;color:var(--acc);margin:6px 0}
+.review{text-align:left;font-size:14px}.review div{border-top:1px dashed var(--line);padding:8px 0}
+.foot{font-size:12px;color:var(--sub);text-align:center;margin-top:16px}
+</style></head><body>
+<header><h1>📖 성경 퀴즈 Day 8</h1><p>창세기 8장 · 물이 걷히다 — 비둘기와 감람 잎, 노아의 제단</p></header>
+<main>
+<section class="card"><h2>📝 오늘의 장 요약</h2><ul class="sum"><li>하나님이 방주 안의 노아와 모든 생물을 권념하사 바람을 불게 하시니, 깊음의 샘과 하늘의 창이 막히고 물이 점점 줄어들었어요 (창 8:1–3).</li><li>칠월 십칠일에 방주가 아라랏산에 머물렀고, 시월 일일에는 산들의 봉우리가 보였어요 (창 8:4–5).</li><li>노아는 먼저 까마귀를, 그다음 비둘기를 내보냈어요. 두 번째 나간 비둘기가 감람 새 잎사귀를 물고 돌아왔고, 세 번째로 나간 비둘기는 다시 돌아오지 않았어요 (창 8:6–12).</li><li>육백일년 이월 이십칠일에 땅이 마르자, 하나님의 말씀대로 노아의 가족과 모든 생물이 방주에서 나왔어요 (창 8:13–19).</li><li>노아가 여호와를 위하여 단을 쌓고 번제를 드리자, 여호와께서 다시는 사람으로 인하여 땅을 저주하지 않겠다고 하셨어요 (창 8:20–22).</li></ul></section>
+<section class="card"><h2>✨ 핵심 구절</h2><div class="verse">“땅이 있을 동안에는 심음과 거둠과 추위와 더위와 여름과 겨울과 낮과 밤이 쉬지 아니하리라”<small>— 창세기 8:22 (개역한글)</small></div></section>
+<section class="card" id="quiz">
+  <div class="qtype"><span id="qt"></span><span id="qn"></span></div>
+  <div class="prog"><div id="bar"></div></div>
+  <div class="qtext" id="qq"></div>
+  <div id="area"></div>
+  <div class="fb" id="fb"></div>
+  <button class="primary next" id="nx">다음 문제 →</button>
+</section>
+<section class="card result" id="res" style="display:none"></section>
+<p class="foot">본문 인용은 개역한글 기준, 요약·설명은 본문을 풀어 쓴 것이에요. 다음: 창세기 9장</p>
+</main>
+<script>
+const QS=[{"type": "blank", "q": "하나님이 노아와 그와 함께 방주에 있는 모든 들짐승과 육축을 ____하사 바람으로 땅위에 불게 하시매", "answer": "권념", "accept": ["권념"], "choices": ["권념", "심판", "축복", "시험"], "explain": "'권념'은 기억하고 돌보신다는 뜻이에요. 물이 줄어드는 전환점이 하나님의 기억에서 시작돼요.", "ref": "창 8:1"}, {"type": "mc", "q": "방주가 머문 산은 어디인가요?", "options": ["시내산", "아라랏산", "모리아산", "갈멜산"], "answer": 1, "explain": "\"칠월 곧 그 달 십칠일에 방주가 아라랏산에 머물렀으며\"", "ref": "창 8:4"}, {"type": "mc", "q": "방주가 산에 머문 날짜는 언제인가요?", "options": ["이월 십칠일", "칠월 십칠일", "시월 일일", "정월 일일"], "answer": 1, "explain": "홍수는 이월 십칠일에 시작됐고(7:11), 정확히 다섯 달 뒤인 칠월 십칠일에 방주가 머물렀어요.", "ref": "창 8:4"}, {"type": "mc", "q": "산들의 봉우리가 보인 것은 언제인가요?", "options": ["칠월 일일", "팔월 십칠일", "시월 일일", "이월 이십칠일"], "answer": 2, "explain": "\"물이 점점 감하여 시월 곧 그달 일일에 산들의 봉우리가 보였더라\"", "ref": "창 8:5"}, {"type": "mc", "q": "노아가 방주의 창을 열고 가장 먼저 내보낸 새는?", "options": ["비둘기", "까마귀", "참새", "독수리"], "answer": 1, "explain": "까마귀는 물이 땅에서 마르기까지 날아 왕래했어요.", "ref": "창 8:7"}, {"type": "blank", "q": "저녁때에 비둘기가 그에게로 돌아왔는데 그 입에 ____ 새 잎사귀가 있는지라", "answer": "감람", "accept": ["감람", "올리브"], "choices": ["감람", "무화과", "포도", "백향목"], "explain": "감람(올리브) 잎을 보고 노아는 땅에 물이 줄어든 줄 알았어요.", "ref": "창 8:11"}, {"type": "mc", "q": "비둘기를 다시 내보내기 전에 노아는 매번 며칠을 기다렸나요?", "options": ["사흘", "칠일", "사십일", "일백오십일"], "answer": 1, "explain": "\"또 칠일을 기다려 다시 비둘기를 방주에서 내어놓으매\" — 10절과 12절 모두 칠일이에요.", "ref": "창 8:10, 12"}, {"type": "mc", "q": "마지막으로 내보낸 비둘기는 어떻게 되었나요?", "options": ["감람 잎을 물고 왔다", "발 붙일 곳이 없어 돌아왔다", "다시는 돌아오지 않았다", "까마귀와 함께 돌아왔다"], "answer": 2, "explain": "\"다시는 그에게로 돌아 오지 아니하였더라\" — 땅이 살 만해졌다는 신호예요.", "ref": "창 8:12"}, {"type": "blank", "q": "____ 이십칠일에 땅이 말랐더라", "answer": "이월", "accept": ["이월", "2월"], "choices": ["이월", "정월", "칠월", "시월"], "explain": "육백일년 이월 이십칠일, 홍수가 시작된 지 약 일 년 만에 땅이 말랐어요.", "ref": "창 8:14"}, {"type": "mc", "q": "방주에서 나온 노아가 가장 먼저 한 일은?", "options": ["집을 지었다", "포도나무를 심었다", "여호와를 위하여 단을 쌓고 번제를 드렸다", "아들들에게 땅을 나눠 주었다"], "answer": 2, "explain": "모든 정결한 짐승과 정결한 새 중에서 취하여 번제로 단에 드렸어요.", "ref": "창 8:20"}, {"type": "blank", "q": "땅이 있을 동안에는 심음과 거둠과 추위와 더위와 여름과 겨울과 ____과 밤이 쉬지 아니하리라", "answer": "낮", "accept": ["낮"], "choices": ["낮", "해", "빛", "아침"], "explain": "오늘의 핵심 구절이에요. 세상의 질서를 지키시겠다는 하나님의 약속이에요.", "ref": "창 8:22"}];
+let i=0,score=0,log=[];
+const $=id=>document.getElementById(id);
+const norm=s=>s.replace(/[\s.,!?·'"“”‘’()]/g,'').toLowerCase();
+function show(){
+  const q=QS[i];
+  $('qt').textContent=q.type==='mc'?'4지선다':'빈칸 채우기';
+  $('qn').textContent=(i+1)+' / '+QS.length+' · 점수 '+score;
+  $('bar').style.width=(i/QS.length*100)+'%';
+  $('qq').textContent=q.q; $('fb').className='fb'; $('fb').innerHTML=''; $('nx').style.display='none';
+  const a=$('area'); a.innerHTML='';
+  if(q.type==='mc'){
+    const box=document.createElement('div');box.className='opts';
+    q.options.forEach((o,k)=>{const b=document.createElement('button');b.textContent=['①','②','③','④'][k]+' '+o;b.onclick=()=>answerMC(k,box);box.appendChild(b);});
+    a.appendChild(box);
+  }else{
+    const row=document.createElement('div');row.className='row';
+    row.innerHTML='<input id="inp" placeholder="직접 입력하거나 아래에서 고르세요" autocomplete="off"><button class="primary" id="ck">확인</button>';
+    a.appendChild(row);
+    const ch=document.createElement('div');ch.className='chips';
+    shuffle(q.choices.slice()).forEach(c=>{const b=document.createElement('button');b.textContent=c;b.onclick=()=>{$('inp').value=c;answerBlank(c,ch);};ch.appendChild(b);});
+    a.appendChild(ch);
+    $('ck').onclick=()=>{const v=$('inp').value.trim(); if(v) answerBlank(v,ch);};
+    $('inp').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();$('ck').click();}};
+  }
+}
+function shuffle(a){for(let k=a.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[a[k],a[j]]=[a[j],a[k]];}return a;}
+function feedback(ok,correctText){
+  const q=QS[i]; if(ok)score++; log.push({q:q.q,ok,ans:correctText,ref:q.ref});
+  $('fb').className='fb '+(ok?'ok':'bad');
+  $('fb').innerHTML=(ok?'⭕ 정답이에요!':'❌ 아쉬워요. 정답: <b>'+esc(correctText)+'</b>')+'<div style="margin-top:6px">'+esc(q.explain)+'</div><div class="ref">📍 '+esc(q.ref)+'</div>';
+  $('qn').textContent=(i+1)+' / '+QS.length+' · 점수 '+score;
+  $('nx').textContent=i===QS.length-1?'결과 보기 🎉':'다음 문제 →'; $('nx').style.display='block';
+}
+function answerMC(k,box){
+  const q=QS[i]; [...box.children].forEach((b,n)=>{b.disabled=true;if(n===q.answer)b.classList.add('ok');else if(n===k)b.classList.add('bad');});
+  feedback(k===q.answer,q.options[q.answer]);
+}
+function answerBlank(v,ch){
+  const q=QS[i]; const ok=q.accept.some(x=>norm(x)===norm(v));
+  $('inp').disabled=true;$('ck').disabled=true;
+  [...ch.children].forEach(b=>{b.disabled=true;if(b.textContent===q.answer)b.classList.add('ok');else if(b.textContent===v&&!ok)b.classList.add('bad');});
+  feedback(ok,q.answer);
+}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+$('nx').onclick=()=>{i++; if(i<QS.length){show();window.scrollTo({top:$('quiz').offsetTop-8,behavior:'smooth'});} else finish();};
+function finish(){
+  $('quiz').style.display='none';const r=$('res');r.style.display='block';
+  const pct=Math.round(score/QS.length*100);
+  const msg=pct===100?'완벽해요! 🏆':pct>=80?'훌륭해요! 👏':pct>=50?'좋아요, 조금만 더! 💪':'요약을 다시 읽고 도전해 보세요 📖';
+  r.innerHTML='<h2>결과</h2><div class="big">'+score+' / '+QS.length+'</div><p>'+msg+'</p><div class="review">'+log.map((l,n)=>'<div>'+(l.ok?'⭕':'❌')+' '+(n+1)+'. '+esc(l.q)+'<br><small>정답: '+esc(l.ans)+' · '+esc(l.ref)+'</small></div>').join('')+'</div><button class="primary" style="width:100%;margin-top:12px" id="rs">🔄 다시 풀기</button>';
+  $('rs').onclick=()=>{i=0;score=0;log=[];r.style.display='none';$('quiz').style.display='block';show();window.scrollTo({top:$('quiz').offsetTop-8,behavior:'smooth'});};
+}
+show();
+</script></body></html>
