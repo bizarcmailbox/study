@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>성경 퀴즈 Day 9 · 창세기 9장</title>
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--ink:#1d2433;--sub:#667085;--acc:#5b4bdb;--ok:#2f9e44;--bad:#e03131;--line:#e4e7ec}
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;-webkit-text-size-adjust:100%}
+header{background:linear-gradient(135deg,#5b4bdb,#c2255c);color:#fff;padding:20px 16px 16px}
+header h1{margin:0;font-size:22px}header p{margin:4px 0 0;opacity:.92;font-size:14px}
+main{max-width:760px;margin:0 auto;padding:12px 12px 40px}
+button,input{font:inherit}button{border:1px solid var(--line);background:#fff;border-radius:10px;padding:10px 12px;cursor:pointer;color:var(--ink)}
+button.primary{background:var(--acc);border-color:var(--acc);color:#fff;font-weight:600}button:active{transform:scale(.98)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin:10px 0;box-shadow:0 1px 2px rgba(16,24,40,.04)}
+.card h2{margin:0 0 8px;font-size:17px}
+.sum li{margin:4px 0;font-size:15px}
+.verse{background:#f3f0ff;border-left:4px solid var(--acc);border-radius:10px;padding:12px;font-size:18px;font-weight:600}
+.verse small{display:block;font-size:13px;color:var(--sub);font-weight:400;margin-top:4px}
+.prog{height:8px;background:#eaecf0;border-radius:99px;overflow:hidden;margin:6px 0 12px}.prog div{height:100%;background:var(--acc);width:0;transition:width .3s}
+.qtype{font-size:13px;color:var(--sub);display:flex;justify-content:space-between}
+.qtext{font-size:20px;font-weight:700;margin:10px 0 14px;word-break:keep-all}
+.opts{display:grid;gap:8px}.opts button{text-align:left;font-size:16px;padding:13px}
+.opts button.ok,.chips button.ok{background:#ebfbee;border-color:var(--ok);color:#1b5e20;font-weight:600}
+.opts button.bad,.chips button.bad{background:#fff5f5;border-color:var(--bad);color:#a61e1e}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}.chips button{border-radius:999px;padding:8px 14px}
+.row{display:flex;gap:8px}.row input{flex:1;min-width:0;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:17px}
+.fb{margin-top:12px;border-radius:12px;padding:12px;font-size:15px;display:none}
+.fb.ok{display:block;background:#ebfbee;border:1px solid #b2f2bb}.fb.bad{display:block;background:#fff5f5;border:1px solid #ffc9c9}
+.fb .ref{color:var(--sub);font-size:13px;margin-top:4px}
+.next{margin-top:12px;width:100%;display:none}
+.result{text-align:center}.big{font-size:44px;font-weight:800;color:var(--acc);margin:6px 0}
+.review{text-align:left;font-size:14px}.review div{border-top:1px dashed var(--line);padding:8px 0}
+.foot{font-size:12px;color:var(--sub);text-align:center;margin-top:16px}
+</style></head><body>
+<header><h1>📖 성경 퀴즈 Day 9</h1><p>창세기 9장 · 무지개 언약 — 노아와 세 아들</p></header>
+<main>
+<section class="card"><h2>📝 오늘의 장 요약</h2><ul class="sum"><li>하나님이 방주에서 나온 노아와 아들들에게 복을 주시며 &quot;생육하고 번성하여 땅에 충만하라&quot;고 하셨어요 (창 9:1, 7).</li><li>이제 모든 산 동물을 먹을 것으로 주시되, 고기를 그 생명 되는 피째 먹지 말라고 하셨고, 사람은 하나님의 형상대로 지음받았기에 사람의 피를 흘리는 일을 엄히 금하셨어요 (창 9:3–6).</li><li>하나님은 노아와 후손, 모든 생물과 언약을 세우시며 다시는 홍수로 모든 생물을 멸하지 않겠다고 약속하셨고, 그 증거로 구름 속에 무지개를 두셨어요 (창 9:8–17).</li><li>포도나무를 심은 노아가 포도주에 취해 장막 안에서 벌거벗었을 때, 함은 이를 보고 형제들에게 알렸지만 셈과 야벳은 뒷걸음쳐 들어가 옷으로 덮었어요 (창 9:20–23).</li><li>깨어난 노아는 가나안을 저주하고 셈과 야벳을 축복했어요. 노아는 홍수 후 350년을 더 살아 950세에 죽었어요 (창 9:24–29).</li></ul></section>
+<section class="card"><h2>✨ 핵심 구절</h2><div class="verse">“내가 내 무지개를 구름 속에 두었나니 이것이 나의 세상과의 언약의 증거니라”<small>— 창세기 9:13 (개역한글)</small></div></section>
+<section class="card" id="quiz">
+  <div class="qtype"><span id="qt"></span><span id="qn"></span></div>
+  <div class="prog"><div id="bar"></div></div>
+  <div class="qtext" id="qq"></div>
+  <div id="area"></div>
+  <div class="fb" id="fb"></div>
+  <button class="primary next" id="nx">다음 문제 →</button>
+</section>
+<section class="card result" id="res" style="display:none"></section>
+<p class="foot">본문 인용은 개역한글 기준, 요약·설명은 본문을 풀어 쓴 것이에요. 다음: 창세기 10장</p>
+</main>
+<script>
+const QS=[{"type": "blank", "q": "하나님이 노아와 그 아들들에게 복을 주시며 그들에게 이르시되 생육하고 번성하여 땅에 ____하라", "answer": "충만", "accept": ["충만"], "choices": ["충만", "정복", "거주", "편만"], "explain": "창조 때 아담에게 주신 복(창 1:28)이 홍수 뒤 노아에게 다시 주어졌어요. 7절에는 '땅에 편만하여'라는 말도 나와요.", "ref": "창 9:1"}, {"type": "mc", "q": "하나님이 고기를 먹도록 허락하시면서 금하신 것은 무엇인가요?", "options": ["바다 고기를 먹는 것", "고기를 피째 먹는 것", "새를 먹는 것", "안식일에 먹는 것"], "answer": 1, "explain": "\"그러나 고기를 그 생명 되는 피채 먹지 말 것이니라\" — 피는 생명을 상징해요.", "ref": "창 9:4"}, {"type": "mc", "q": "사람의 피를 흘리는 일을 엄히 금하신 이유는 무엇인가요?", "options": ["사람이 흙으로 지어졌기 때문에", "사람이 땅을 다스리기 때문에", "하나님이 자기 형상대로 사람을 지으셨기 때문에", "사람의 수가 적기 때문에"], "answer": 2, "explain": "\"이는 하나님이 자기 형상대로 사람을 지었음이니라\" — 생명의 존엄이 하나님의 형상에 근거해요.", "ref": "창 9:6"}, {"type": "mc", "q": "하나님이 언약에서 약속하신 내용은 무엇인가요?", "options": ["다시는 모든 생물을 홍수로 멸하지 않겠다", "다시는 비를 내리지 않겠다", "노아에게 새 땅을 주겠다", "다시는 죄를 벌하지 않겠다"], "answer": 0, "explain": "\"다시는 모든 생물을 홍수로 멸하지 아니할 것이라 땅을 침몰할 홍수가 다시 있지 아니하리라\"", "ref": "창 9:11"}, {"type": "mc", "q": "하나님이 이 언약을 누구와 세우셨나요?", "options": ["노아 한 사람과만", "노아와 아들들만", "노아와 후손, 그리고 방주에서 나온 모든 생물과", "셈의 후손과만"], "answer": 2, "explain": "언약의 대상은 노아와 후손뿐 아니라 새와 육축과 땅의 모든 생물까지였어요.", "ref": "창 9:9–10"}, {"type": "blank", "q": "내가 내 ____를 구름 속에 두었나니 이것이 나의 세상과의 언약의 증거니라", "answer": "무지개", "accept": ["무지개"], "choices": ["무지개", "별", "번개", "구름기둥"], "explain": "무지개는 하나님이 언약을 '기억하시는' 표징이에요 (창 9:15–16).", "ref": "창 9:13"}, {"type": "mc", "q": "노아의 세 아들 중 가나안의 아버지는 누구인가요?", "options": ["셈", "함", "야벳", "에녹"], "answer": 1, "explain": "\"방주에서 나온 노아의 아들들은 셈과 함과 야벳이며 함은 가나안의 아비라\"", "ref": "창 9:18"}, {"type": "blank", "q": "노아가 농업을 시작하여 ____를 심었더니", "answer": "포도나무", "accept": ["포도나무", "포도"], "choices": ["포도나무", "감람나무", "무화과나무", "밀"], "explain": "포도주를 마시고 취한 노아가 장막 안에서 벌거벗은 일로 이어져요.", "ref": "창 9:20–21"}, {"type": "mc", "q": "아버지의 벌거벗은 모습을 덮어 드린 셈과 야벳은 어떻게 행동했나요?", "options": ["함을 불러 함께 덮었다", "아버지를 깨워 장막 밖으로 모셨다", "옷을 어깨에 메고 뒷걸음쳐 들어가 얼굴을 돌린 채 덮었다", "장막 문을 닫고 아무에게도 말하지 않았다"], "answer": 2, "explain": "그들은 얼굴을 돌이키고 아버지의 하체를 보지 않았어요. 부모를 존중하는 모습이에요.", "ref": "창 9:23"}, {"type": "mc", "q": "술이 깬 노아가 저주한 대상은 누구인가요?", "options": ["함", "가나안", "야벳", "셈"], "answer": 1, "explain": "\"가나안은 저주를 받아 그 형제의 종들의 종이 되기를 원하노라\" — 함이 아닌 그 아들 가나안이 언급돼요.", "ref": "창 9:25"}, {"type": "mc", "q": "노아는 몇 세에 죽었나요?", "options": ["600세", "777세", "950세", "969세"], "answer": 2, "explain": "홍수 후 350년을 지내고 향년 950세에 죽었어요. 969세는 므두셀라예요 (창 5:27).", "ref": "창 9:28–29"}];
+let i=0,score=0,log=[];
+const $=id=>document.getElementById(id);
+const norm=s=>s.replace(/[\s.,!?·'"“”‘’()]/g,'').toLowerCase();
+function show(){
+  const q=QS[i];
+  $('qt').textContent=q.type==='mc'?'4지선다':'빈칸 채우기';
+  $('qn').textContent=(i+1)+' / '+QS.length+' · 점수 '+score;
+  $('bar').style.width=(i/QS.length*100)+'%';
+  $('qq').textContent=q.q; $('fb').className='fb'; $('fb').innerHTML=''; $('nx').style.display='none';
+  const a=$('area'); a.innerHTML='';
+  if(q.type==='mc'){
+    const box=document.createElement('div');box.className='opts';
+    q.options.forEach((o,k)=>{const b=document.createElement('button');b.textContent=['①','②','③','④'][k]+' '+o;b.onclick=()=>answerMC(k,box);box.appendChild(b);});
+    a.appendChild(box);
+  }else{
+    const row=document.createElement('div');row.className='row';
+    row.innerHTML='<input id="inp" placeholder="직접 입력하거나 아래에서 고르세요" autocomplete="off"><button class="primary" id="ck">확인</button>';
+    a.appendChild(row);
+    const ch=document.createElement('div');ch.className='chips';
+    shuffle(q.choices.slice()).forEach(c=>{const b=document.createElement('button');b.textContent=c;b.onclick=()=>{$('inp').value=c;answerBlank(c,ch);};ch.appendChild(b);});
+    a.appendChild(ch);
+    $('ck').onclick=()=>{const v=$('inp').value.trim(); if(v) answerBlank(v,ch);};
+    $('inp').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();$('ck').click();}};
+  }
+}
+function shuffle(a){for(let k=a.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[a[k],a[j]]=[a[j],a[k]];}return a;}
+function feedback(ok,correctText){
+  const q=QS[i]; if(ok)score++; log.push({q:q.q,ok,ans:correctText,ref:q.ref});
+  $('fb').className='fb '+(ok?'ok':'bad');
+  $('fb').innerHTML=(ok?'⭕ 정답이에요!':'❌ 아쉬워요. 정답: <b>'+esc(correctText)+'</b>')+'<div style="margin-top:6px">'+esc(q.explain)+'</div><div class="ref">📍 '+esc(q.ref)+'</div>';
+  $('qn').textContent=(i+1)+' / '+QS.length+' · 점수 '+score;
+  $('nx').textContent=i===QS.length-1?'결과 보기 🎉':'다음 문제 →'; $('nx').style.display='block';
+}
+function answerMC(k,box){
+  const q=QS[i]; [...box.children].forEach((b,n)=>{b.disabled=true;if(n===q.answer)b.classList.add('ok');else if(n===k)b.classList.add('bad');});
+  feedback(k===q.answer,q.options[q.answer]);
+}
+function answerBlank(v,ch){
+  const q=QS[i]; const ok=q.accept.some(x=>norm(x)===norm(v));
+  $('inp').disabled=true;$('ck').disabled=true;
+  [...ch.children].forEach(b=>{b.disabled=true;if(b.textContent===q.answer)b.classList.add('ok');else if(b.textContent===v&&!ok)b.classList.add('bad');});
+  feedback(ok,q.answer);
+}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+$('nx').onclick=()=>{i++; if(i<QS.length){show();window.scrollTo({top:$('quiz').offsetTop-8,behavior:'smooth'});} else finish();};
+function finish(){
+  $('quiz').style.display='none';const r=$('res');r.style.display='block';
+  const pct=Math.round(score/QS.length*100);
+  const msg=pct===100?'완벽해요! 🏆':pct>=80?'훌륭해요! 👏':pct>=50?'좋아요, 조금만 더! 💪':'요약을 다시 읽고 도전해 보세요 📖';
+  r.innerHTML='<h2>결과</h2><div class="big">'+score+' / '+QS.length+'</div><p>'+msg+'</p><div class="review">'+log.map((l,n)=>'<div>'+(l.ok?'⭕':'❌')+' '+(n+1)+'. '+esc(l.q)+'<br><small>정답: '+esc(l.ans)+' · '+esc(l.ref)+'</small></div>').join('')+'</div><button class="primary" style="width:100%;margin-top:12px" id="rs">🔄 다시 풀기</button>';
+  $('rs').onclick=()=>{i=0;score=0;log=[];r.style.display='none';$('quiz').style.display='block';show();window.scrollTo({top:$('quiz').offsetTop-8,behavior:'smooth'});};
+}
+show();
+</script></body></html>
