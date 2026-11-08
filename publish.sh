@@ -4,7 +4,7 @@
 # Idempotent: safe to run any time; commits only when something changed.
 set -euo pipefail
 
-SITE=/workspace/study-site
+SITE=${STUDY_SITE_DIR:-/workspace/study-site}   # override only for dry-run tests
 REPO=bizarcmailbox/study
 BASE_URL="https://bizarcmailbox.github.io/study"
 TOKEN_FILE="$HOME/.config/nau/gh_token"
@@ -26,6 +26,7 @@ sync_dir() {  # sync_dir SRC DEST GLOB...  (mirror matching files, delete stale 
     cmp -s "$f" "$dest/$base" || cp -p "$f" "$dest/$base"
   done; done
   for f in "$dest"/*; do
+    [[ -f "$f" ]] || continue   # never touch subfolders (e.g. bible/nt)
     base=$(basename "$f")
     [[ " ${keep[*]} " == *" $base "* ]] || rm -f "$f"
   done
@@ -34,6 +35,11 @@ sync_dir() {  # sync_dir SRC DEST GLOB...  (mirror matching files, delete stale 
 sync_dir /workspace/japanese-vocab/daily japanese 'day-*.html'
 sync_dir /workspace/chinese-vocab/daily  chinese  'day-*.html'
 sync_dir /workspace/bible-quiz/daily     bible    'day-*.html'
+# NT chronological reading quiz (2026-11-08 ~ 12-31): released days only, in a subfolder
+sync_dir /workspace/nt-quiz/publish      bible/nt 'day-*.html'
+# NT reading plan page (re-copied after the bible sync above, which prunes non-day files in bible/)
+NT_PLAN=/workspace/bible-plan/publish-ready/study/bible/nt-plan-2026.html
+[[ -f "$NT_PLAN" ]] && { cmp -s "$NT_PLAN" bible/nt-plan-2026.html || cp -p "$NT_PLAN" bible/nt-plan-2026.html; }
 sync_dir /workspace/french-songs         french   'french-songs*.html' 'french-quiz*.html'
 touch .nojekyll
 
@@ -67,4 +73,5 @@ echo "Index:    $BASE_URL/"
 echo "Japanese: $BASE_URL/japanese/day-XX.html   (e.g. day-15.html)"
 echo "Chinese:  $BASE_URL/chinese/day-XX.html    (e.g. day-05.html)"
 echo "Bible:    $BASE_URL/bible/day-N.html       (e.g. day-5.html)"
+echo "NT plan:  $BASE_URL/bible/nt-plan-2026.html  · NT quiz: $BASE_URL/bible/nt/day-NN.html (e.g. day-01.html)"
 echo "French:   $BASE_URL/french/french-songs.html, french-quiz.html, french-songs-2.html, french-quiz-2.html, french-songs-3.html, french-quiz-3.html"

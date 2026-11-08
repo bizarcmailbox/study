@@ -31,6 +31,16 @@ for folder, label, emoji in [("japanese", "일본어", "🇯🇵"), ("chinese", 
         items.append((f"{folder}/{name}", f"{label} Day {n}", sub))
     sections.append((f"{emoji} {label}", items))
 
+# NT chronological reading quiz (bible/nt/day-NN.html) + plan page
+nt_items = []
+if os.path.exists(os.path.join(site, "bible", "nt-plan-2026.html")):
+    nt_items.append(("bible/nt-plan-2026.html", "신약 연대기 통독 플랜 (11/8–12/31, 54일)", "전체 일정표"))
+for n, name in day_files(os.path.join("bible", "nt")):
+    t = title_of(os.path.join(site, "bible", "nt", name))
+    sub = t.split("·", 1)[1].strip() if "·" in t else ""
+    nt_items.append((f"bible/nt/{name}", f"신약 통독 Day {n}", sub))
+sections.append(("✝️ 신약 통독 퀴즈", nt_items))
+
 french_order = ["french-songs-2.html", "french-quiz-2.html", "french-songs.html", "french-quiz.html"]
 fdir = os.path.join(site, "french")
 fnames = [f for f in french_order if os.path.exists(os.path.join(fdir, f))]
