@@ -41,10 +41,12 @@ sync_dir /workspace/nt-quiz/publish      bible/nt 'day-*.html'
 NT_PLAN=/workspace/bible-plan/publish-ready/study/bible/nt-plan-2026.html
 [[ -f "$NT_PLAN" ]] && { cmp -s "$NT_PLAN" bible/nt-plan-2026.html || cp -p "$NT_PLAN" bible/nt-plan-2026.html; }
 sync_dir /workspace/french-songs         french   'french-songs*.html' 'french-quiz*.html'
+# Japanese verb songs study page (2026-11-08)
+sync_dir /workspace/japanese/verb-song   songs    'verb-song-*.html'
 touch .nojekyll
 
 # Refuse files >= 95 MB (GitHub hard limit is 100 MB)
-big=$(find japanese chinese bible french -type f -size +95M || true)
+big=$(find japanese chinese bible french songs -type f -size +95M || true)
 if [[ -n "$big" ]]; then echo "ERROR: files too large for GitHub:" >&2; echo "$big" >&2; exit 1; fi
 
 python3 "$SITE/make_index.py" "$SITE"
